@@ -247,76 +247,36 @@
 
 				// floor
 
-				var floorGeometry = new THREE.PlaneBufferGeometry( 2000, 2000, 100, 100 );
-				floorGeometry.rotateX( - Math.PI / 2 );
-
-				// vertex displacement
-
-				var position = floorGeometry.attributes.position;
-
-				for ( var i = 0, l = position.count; i < l; i ++ ) {
-
-					vertex.fromBufferAttribute( position, i );
-
-					vertex.x += Math.random() * 20 - 10;
-					vertex.y += Math.random() * 2;
-					vertex.z += Math.random() * 20 - 10;
-
-					position.setXYZ( i, vertex.x, vertex.y, vertex.z );
-
-				}
-
-				floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
-
-				position = floorGeometry.attributes.position;
-				var colors = [];
-
-				for ( var i = 0, l = position.count; i < l; i ++ ) {
-
-					color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-					colors.push( color.r, color.g, color.b );
-
-				}
-
-				floorGeometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
-
-				var floorMaterial = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors } );
-
-				var floor = new THREE.Mesh( floorGeometry, floorMaterial );
-				scene.add( floor );
 
 				// objects
 
-				var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
-				boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
+				var geometry = new THREE.BoxGeometry( 10, 10, 10 );
+				var texture = new THREE.TextureLoader().load( "Camo.png" );
+				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				var cube = new THREE.Mesh( geometry, material );
+				cube.position.x = 10;
+				cube.position.y = 10;
+				cube.position.z = 10;
+var cube1 = new THREE.Mesh( geometry, material );
+				cube1.position.x = 20;
+				cube1.position.y = 10;
+				cube1.position.z = 10;
+var cube2 = new THREE.Mesh( geometry, material );
+				cube2.position.x = 30;
+				cube2.position.y = 10;
+				cube2.position.z = 10;
+var cube3 = new THREE.Mesh( geometry, material );
+				cube3.position.x = 40;
+				cube3.position.y = 40;
+				cube3.position.z = 10;
 
-				position = boxGeometry.attributes.position;
-				colors = [];
 
-				for ( var i = 0, l = position.count; i < l; i ++ ) {
 
-					color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-					colors.push( color.r, color.g, color.b );
 
-				}
 
-				boxGeometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 
-				for ( var i = 0; i < 500; i ++ ) {
-
-					var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: THREE.VertexColors } );
-					boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-
-					var box = new THREE.Mesh( boxGeometry, boxMaterial );
-					box.position.x = Math.floor( Math.random() * 20 - 10 ) * 20;
-					box.position.y = Math.floor( Math.random() * 20 ) * 20 + 10;
-					box.position.z = Math.floor( Math.random() * 20 - 10 ) * 20;
-
-					scene.add( box );
-					objects.push( box );
-
-				}
-
+				scene.add( cube, cube1, cube2, cube3 );
+				objects.push( cube, cube1, cube2, cube3 );
 				//
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
