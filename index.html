@@ -247,13 +247,13 @@
 
 				// floor
 
-var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+var light = new THREE.AmbientLight( 0xffffff ); // soft white light
 scene.add( light );
 				// objects
 
 				var Loader = new THREE.ObjectLoader();
 
-Loader.load('test.json', function(object) {
+Loader.load('teest1.json', function(object) {
       myObj = object;
       object.scale.set(10, 10, 10);
       obj1.scene.add(object);
