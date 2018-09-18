@@ -251,7 +251,7 @@ var light = new THREE.AmbientLight( 0xffffff ); // soft white light
 scene.add( light );
 				// objects
 
-				var Loader = new THREE.ObjectLoader();
+				var loader = new THREE.ObjectLoader();
 
 loader.load(
 	// resource URL
@@ -280,7 +280,6 @@ loader.load(
 var object = loader.parse( a_json_object );
 
 scene.add( object );	
-objects.push( object );
 				
 				
 				
